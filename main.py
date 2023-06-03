@@ -3,8 +3,6 @@ import os
 import click
 import uvicorn
 
-from core.config import config
-
 
 @click.command()
 @click.option(
@@ -23,8 +21,8 @@ def main(env: str, debug: bool):
     os.environ["DEBUG"] = str(debug)
     uvicorn.run(
         app="app.server:app",
-        host=config.APP_HOST,
-        port=config.APP_PORT,
+        host="127.0.0.1",
+        port=8000,
         # reload=True if config.ENV != "production" else False,
         reload=True,
         workers=1,
