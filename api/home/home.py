@@ -23,10 +23,8 @@ async def home(image: ImageResuest):
         np_data = np.fromstring(decoded_data, np.uint8)
         image = cv2.imdecode(np_data, cv2.IMREAD_UNCHANGED)
         image = cv2.cvtColor(image, cv2.COLOR_RGBA2RGB)
-        cv2.imwrite("D:\\Nam 3\\HK2\\Mobile\\Final\\web\\image.jpg", image) 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        lable = await  homeServive.detect(image)
-        print(lable)
+        lable = await  homeServive.detect(image)        
         return JSONResponse(content={"result": str(lable)}, status_code=200)
     except Exception as ex:
         print(str(ex))
